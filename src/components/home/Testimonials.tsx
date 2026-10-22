@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { testimonials } from "@/data/testimonials";
 import { StarIcon } from "@/components/ui/Icons";
 
@@ -8,21 +11,31 @@ export function Testimonials() {
     <section className="relative w-full bg-transparent py-20 px-6 text-white md:px-8">
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
             Testimonials
           </h2>
           <p className="mt-2 text-sm text-neutral-400 sm:text-base">
             Feedback and testimonials from recent client projects.
           </p>
-        </div>
+        </motion.div>
 
         {/* 2x2 Grid of Testimonial Cards */}
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {testimonials.map((t) => (
-            <div
+          {testimonials.map((t, index) => (
+            <motion.div
               key={t.id}
-              className="flex flex-col justify-between rounded-2xl border border-[#2D2D38] bg-[#18181E] p-6 transition-all duration-300 hover:border-purple-500/30 hover:bg-[#1D1D26]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="flex flex-col justify-between rounded-2xl border border-[#2D2D38] bg-[#18181E] p-6 transition-colors duration-300 hover:border-purple-500/30 hover:bg-[#1D1D26]"
             >
               {/* Stars & Feedback */}
               <div>
@@ -61,7 +74,7 @@ export function Testimonials() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

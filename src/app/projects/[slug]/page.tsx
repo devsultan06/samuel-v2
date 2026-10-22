@@ -5,8 +5,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeBubbles } from "@/components/ui/DecorativeBubbles";
 import { CTASection } from "@/components/layout/CTASection";
 import { Footer } from "@/components/layout/Footer";
-import { ChevronLeftIcon, ChevronRightIcon } from "@/components/ui/Icons";
 import { projects } from "@/data/projects";
+import { ProjectShowcase } from "@/components/projects/ProjectShowcase";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -80,86 +80,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         {/* Foreground Content */}
         <div className="relative z-10">
           {/* Showcase Card Section */}
-          <section className="relative w-full pt-12 pb-16 px-6 sm:pt-16 md:pt-20 md:px-8">
-            <div className="mx-auto max-w-4xl">
-              <div className="overflow-hidden rounded-3xl border border-[#2D2D38]/80 bg-[#16161D]/90 shadow-2xl backdrop-blur-sm">
-                {/* Device Mockup */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-950 sm:aspect-[16/9]">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} mockup`}
-                    fill
-                    priority
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Project Details Panel */}
-                <div className="p-6 sm:p-10">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                    {project.title} ({project.year})
-                  </h2>
-
-                  <p className="mt-3 text-base leading-relaxed text-neutral-300">
-                    {project.summary}
-                  </p>
-
-                  {/* Problem Statement */}
-                  <div className="mt-8 border-t border-white/5 pt-6">
-                    <p className="text-base leading-relaxed text-neutral-300">
-                      <strong className="font-bold text-white">Problem:</strong>{" "}
-                      {project.problem}
-                    </p>
-                  </div>
-
-                  {/* Solution Statement */}
-                  <div className="mt-6 border-t border-white/5 pt-6">
-                    <p className="text-base leading-relaxed text-neutral-300">
-                      <strong className="font-bold text-white">Solution:</strong>{" "}
-                      {project.solution}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Project Switcher Navigation */}
-              <div className="mt-12 flex items-center justify-center gap-6">
-                {/* Previous Project Link */}
-                <Link
-                  href={`/projects/${prevProject.slug}`}
-                  aria-label={`Go to previous project: ${prevProject.title}`}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 bg-[#1A1A22] text-neutral-300 transition-all hover:border-neutral-500 hover:bg-[#252530] hover:text-white"
-                >
-                  <ChevronLeftIcon className="h-5 w-5" />
-                </Link>
-
-                {/* Pagination Dots */}
-                <div className="flex items-center gap-2.5">
-                  {projects.map((p, idx) => (
-                    <Link
-                      key={p.slug}
-                      href={`/projects/${p.slug}`}
-                      aria-label={`View ${p.title}`}
-                      className={`h-2.5 rounded-full transition-all duration-300 ${
-                        idx === projectIndex
-                          ? "w-8 bg-[#2D17BB] shadow-sm shadow-[#2D17BB]"
-                          : "w-2.5 bg-neutral-600 hover:bg-neutral-400"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {/* Next Project Link */}
-                <Link
-                  href={`/projects/${nextProject.slug}`}
-                  aria-label={`Go to next project: ${nextProject.title}`}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-neutral-700 bg-[#1A1A22] text-neutral-300 transition-all hover:border-neutral-500 hover:bg-[#252530] hover:text-white"
-                >
-                  <ChevronRightIcon className="h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-          </section>
+          <ProjectShowcase
+            project={project}
+            prevProject={prevProject}
+            nextProject={nextProject}
+            allProjects={projects}
+            projectIndex={projectIndex}
+          />
 
           {/* Shared CTA & Footer */}
           <CTASection />

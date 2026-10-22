@@ -1,15 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeBubbles } from "@/components/ui/DecorativeBubbles";
 import { CTASection } from "@/components/layout/CTASection";
 import { Footer } from "@/components/layout/Footer";
 import { experiences } from "@/data/experience";
-
-export const metadata = {
-  title: "About Me | Ademola Samuel",
-  description:
-    "Learn about Ademola Samuel, UI/UX Designer & Framer Developer, experience, and background.",
-};
 
 export default function AboutPage() {
   return (
@@ -21,7 +18,12 @@ export default function AboutPage() {
       <section className="relative w-full bg-white pt-10 pb-16 px-6 text-center md:pt-16 md:pb-24 md:px-8 overflow-hidden">
         <DecorativeBubbles />
 
-        <div className="relative z-10 mx-auto max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 mx-auto max-w-3xl"
+        >
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-neutral-950">
             About me
           </h1>
@@ -29,7 +31,7 @@ export default function AboutPage() {
           <p className="mt-8 text-base leading-relaxed text-neutral-600 sm:text-lg">
             I’m <strong className="font-bold text-neutral-950">Ademola Samuel</strong>, a UI/UX Designer and Framer Developer with 3+ years of experience crafting intuitive digital products. I specialize in turning complex ideas into sleek, high-performing websites and user-focused interfaces, having designed over six complete digital projects and custom-built two Framer websites from scratch.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Down Part: Dark Container with Top Curve & bg3.png Background */}
@@ -50,19 +52,31 @@ export default function AboutPage() {
           {/* My Experience Section */}
           <section className="relative w-full pt-12 pb-16 px-6 sm:pt-16 md:pt-20 md:px-8">
             <div className="mx-auto max-w-4xl">
-              <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                My Experience
-              </h2>
-              <p className="mt-2 text-sm text-neutral-400 sm:text-base">
-                The cards below highlight key UI/UX projects, spanning both web and mobile application design.
-              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                  My Experience
+                </h2>
+                <p className="mt-2 text-sm text-neutral-400 sm:text-base">
+                  The cards below highlight key UI/UX projects, spanning both web and mobile application design.
+                </p>
+              </motion.div>
 
               {/* Experience Cards Stack */}
               <div className="mt-10 flex flex-col gap-6">
-                {experiences.map((exp) => (
-                  <div
+                {experiences.map((exp, index) => (
+                  <motion.div
                     key={exp.id}
-                    className="grid grid-cols-1 gap-6 rounded-2xl border border-[#2D2D38] bg-[#18181E] p-6 transition-all duration-300 hover:border-purple-500/40 hover:bg-[#1D1D26] md:grid-cols-12 md:p-8"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.5, delay: index * 0.12 }}
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className="grid grid-cols-1 gap-6 rounded-2xl border border-[#2D2D38] bg-[#18181E] p-6 transition-colors duration-300 hover:border-purple-500/40 hover:bg-[#1D1D26] md:grid-cols-12 md:p-8"
                   >
                     {/* Left Column: Role, Company, Year */}
                     <div className="md:col-span-4">
@@ -83,7 +97,7 @@ export default function AboutPage() {
                         {exp.description}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

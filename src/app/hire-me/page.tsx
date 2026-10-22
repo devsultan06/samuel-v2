@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeBubbles } from "@/components/ui/DecorativeBubbles";
 import { Footer } from "@/components/layout/Footer";
@@ -58,7 +59,12 @@ export default function HireMePage() {
       <section className="relative w-full bg-white pt-10 pb-16 px-6 text-center md:pt-16 md:pb-24 md:px-8 overflow-hidden">
         <DecorativeBubbles />
 
-        <div className="relative z-10 mx-auto max-w-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 mx-auto max-w-2xl"
+        >
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-neutral-950">
             Hire me
           </h1>
@@ -66,7 +72,7 @@ export default function HireMePage() {
           <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg">
             Have a project or collaboration in mind? Drop me a message. I’d love to learn about your goals and discuss how we can bring your vision to life.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Down Part: Dark Container with Top Curve & bg4.png Background */}
@@ -86,9 +92,19 @@ export default function HireMePage() {
         <div className="relative z-10">
           {/* Contact Form Section */}
           <section className="relative w-full pt-12 pb-20 px-6 sm:pt-16 md:pt-20 md:px-8">
-            <div className="mx-auto max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="mx-auto max-w-2xl"
+            >
               {submitted ? (
-                <div className="relative rounded-2xl border border-white/10 bg-[#16161D]/80 p-8 py-12 text-center backdrop-blur-sm">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative rounded-2xl border border-white/10 bg-[#16161D]/80 p-8 py-12 text-center backdrop-blur-sm"
+                >
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#2D17BB]/20 text-[#5848C3]">
                     <svg
                       className="h-8 w-8"
@@ -111,11 +127,11 @@ export default function HireMePage() {
                       setSubmitted(false);
                       setFormData({ name: "", email: "", message: "" });
                     }}
-                    className="mt-6 inline-flex rounded-full bg-[#2D17BB] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#3922D6]"
+                    className="mt-6 inline-flex rounded-full bg-[#2D17BB] px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#3922D6]"
                   >
                     Send another message
                   </button>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="relative flex flex-col gap-6">
                   {/* Name Field */}
@@ -129,13 +145,14 @@ export default function HireMePage() {
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       required
                       placeholder="Jon doe"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
+                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
                     />
                   </div>
 
@@ -150,13 +167,14 @@ export default function HireMePage() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
                       required
                       placeholder="@jondoe"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
+                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
                     />
                   </div>
 
@@ -170,6 +188,7 @@ export default function HireMePage() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       required
                       rows={5}
                       placeholder="Write a message....."
@@ -177,20 +196,26 @@ export default function HireMePage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
+                      className="mt-2 w-full rounded-xl border border-neutral-700/80 bg-[#0E0E14]/90 px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all focus:border-[#5848C3] focus:outline-none focus:ring-1 focus:ring-[#5848C3]"
                     />
                   </div>
 
                   {/* Error Notification */}
                   {errorMessage && (
-                    <div className="rounded-xl border border-red-500/30 bg-red-950/40 p-4 text-xs font-medium text-red-300">
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="rounded-xl border border-red-500/30 bg-red-950/40 p-4 text-xs font-medium text-red-300"
+                    >
                       {errorMessage}
-                    </div>
+                    </motion.div>
                   )}
 
                   {/* Submit Action */}
                   <div className="flex justify-end pt-2">
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={isSubmitting}
                       className="inline-flex items-center gap-2 rounded-xl bg-[#2D17BB] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2D17BB]/30 transition-all duration-300 hover:bg-[#3922D6] hover:shadow-[#2D17BB]/50 focus:outline-none focus:ring-2 focus:ring-[#5848C3] disabled:cursor-not-allowed disabled:opacity-60"
@@ -221,11 +246,11 @@ export default function HireMePage() {
                       ) : (
                         <span>Send</span>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
                 </form>
               )}
-            </div>
+            </motion.div>
           </section>
 
           {/* Global Footer */}

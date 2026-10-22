@@ -1,16 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeBubbles } from "@/components/ui/DecorativeBubbles";
 import { CTASection } from "@/components/layout/CTASection";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/projects";
-
-export const metadata = {
-  title: "Projects | Ademola Samuel",
-  description:
-    "A showcase of web and mobile interfaces designed for seamless user experiences by Ademola Samuel.",
-};
 
 export default function ProjectsPage() {
   return (
@@ -22,7 +19,12 @@ export default function ProjectsPage() {
       <section className="relative w-full bg-white pt-10 pb-16 px-6 text-center md:pt-16 md:pb-24 md:px-8 overflow-hidden">
         <DecorativeBubbles />
 
-        <div className="relative z-10 mx-auto max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 mx-auto max-w-3xl"
+        >
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl text-neutral-950">
             My Projects
           </h1>
@@ -30,7 +32,7 @@ export default function ProjectsPage() {
           <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:text-lg">
             A showcase of web and mobile interfaces designed for seamless user experiences.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Down Part: Dark Container with Top Curve & bg2.png Background */}
@@ -52,10 +54,15 @@ export default function ProjectsPage() {
           <section className="relative w-full pt-12 pb-16 px-6 sm:pt-16 md:pt-20 md:px-8">
             <div className="mx-auto max-w-6xl">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                {projects.map((project) => (
-                  <div
+                {projects.map((project, index) => (
+                  <motion.div
                     key={project.id}
-                    className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-[#2D2D38] bg-[#18181E] p-4 transition-all duration-300 hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-950/30 sm:p-6"
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                    className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-[#2D2D38] bg-[#18181E] p-4 transition-colors duration-300 hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-950/30 sm:p-6"
                   >
                     {/* Mockup Image */}
                     <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl bg-neutral-950">
@@ -91,7 +98,7 @@ export default function ProjectsPage() {
                         </Link>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
