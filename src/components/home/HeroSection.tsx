@@ -15,7 +15,7 @@ export function HeroSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-end justify-center pointer-events-none overflow-hidden"
       >
-        <div className="relative h-full w-[650px] sm:w-[800px] md:w-[920px] lg:w-[1050px] xl:w-[1150px] max-w-none flex items-end justify-center">
+        <div className="relative h-full w-[650px] sm:w-[800px] md:w-[920px] lg:w-[1050px] xl:w-[1150px] max-w-none flex items-end justify-center translate-y-8 sm:translate-y-12 md:translate-y-16 lg:translate-y-20 xl:translate-y-24">
           <Image
             src="/Rectangle 2.png"
             alt="Ademola Samuel"
