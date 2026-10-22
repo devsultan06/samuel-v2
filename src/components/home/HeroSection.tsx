@@ -67,16 +67,16 @@ export function HeroSection() {
             >
               UI/UX Designer &amp;
               <br />
-              <span className="inline-flex items-center gap-2">
-                <span className="relative inline-block h-6 w-5 sm:h-7 sm:w-6 lg:h-8 lg:w-6 flex-shrink-0">
+              <span className="inline-flex items-center gap-1 sm:gap-1.5">
+                <span className="relative inline-block h-6 w-4 sm:h-7 sm:w-5 md:h-8 md:w-5.5 lg:h-9 lg:w-6 flex-shrink-0">
                   <Image
                     src="/Vector1.png"
-                    alt="Framer"
+                    alt="F"
                     fill
                     className="object-contain"
                   />
                 </span>
-                <span>Framer Developer</span>
+                <span>ramer Developer</span>
               </span>
               <br />
               Based in Lagos
