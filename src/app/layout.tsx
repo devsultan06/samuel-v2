@@ -36,6 +36,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+
 export default function RootLayout({
   children,
 }: {
@@ -45,6 +47,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="bg-[#111112] text-white antialiased selection:bg-[#2D17BB] selection:text-white">
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

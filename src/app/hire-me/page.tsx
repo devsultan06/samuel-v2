@@ -8,15 +8,45 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function HireMePage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("https://formspree.io/f/mgaawqor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMessage(
+          data?.errors?.map((err: { message: string }) => err.message).join(", ") ||
+            "Unable to send message right now. Please try again."
+        );
+      }
+    } catch {
+      setErrorMessage(
+        "Network connection error. Please check your internet and try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -151,13 +181,46 @@ export default function HireMePage() {
                     />
                   </div>
 
+                  {/* Error Notification */}
+                  {errorMessage && (
+                    <div className="rounded-xl border border-red-500/30 bg-red-950/40 p-4 text-xs font-medium text-red-300">
+                      {errorMessage}
+                    </div>
+                  )}
+
                   {/* Submit Action */}
                   <div className="flex justify-end pt-2">
                     <button
                       type="submit"
-                      className="rounded-xl bg-[#2D17BB] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2D17BB]/30 transition-all duration-300 hover:bg-[#3922D6] hover:shadow-[#2D17BB]/50 focus:outline-none focus:ring-2 focus:ring-[#5848C3]"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#2D17BB] px-10 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2D17BB]/30 transition-all duration-300 hover:bg-[#3922D6] hover:shadow-[#2D17BB]/50 focus:outline-none focus:ring-2 focus:ring-[#5848C3] disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Send
+                      {isSubmitting ? (
+                        <>
+                          <svg
+                            className="h-4 w-4 animate-spin text-white"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v8H4z"
+                            ></path>
+                          </svg>
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <span>Send</span>
+                      )}
                     </button>
                   </div>
                 </form>
