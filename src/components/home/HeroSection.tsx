@@ -15,20 +15,20 @@ export function HeroSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-end justify-center pointer-events-none overflow-hidden"
       >
-        <div className="relative h-full w-[650px] sm:w-[800px] md:w-[920px] lg:w-[1050px] xl:w-[1150px] max-w-none flex items-end justify-center translate-y-8 sm:translate-y-12 md:translate-y-16 lg:translate-y-20 xl:translate-y-24">
+        <div className="relative h-full w-[620px] sm:w-[760px] md:w-[880px] lg:w-[1000px] xl:w-[1100px] max-w-none flex items-end justify-center translate-y-5 sm:translate-y-6 md:translate-y-7 lg:translate-y-8 xl:translate-y-9">
           <Image
             src="/Rectangle 2.png"
             alt="Ademola Samuel"
             fill
             priority
             className="object-contain object-bottom select-none"
-            sizes="(max-width: 768px) 95vw, (max-width: 1200px) 950px, 1150px"
+            sizes="(max-width: 768px) 95vw, (max-width: 1200px) 950px, 1100px"
           />
         </div>
       </motion.div>
 
       {/* Foreground Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-[620px] sm:min-h-[700px] md:min-h-[780px] lg:min-h-[840px] xl:min-h-[880px] max-w-6xl flex-col justify-end px-6 pb-8 pt-10 md:px-8 lg:pb-10">
+      <div className="relative z-10 mx-auto flex min-h-[580px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-end px-6 pb-8 pt-8 md:px-8 lg:pb-10">
         {/* Two-column layout: Left headline & badge, Right bio & CTA */}
         <div className="grid grid-cols-1 items-end justify-between gap-8 md:grid-cols-12">
           {/* Left Column: Badge & Headline */}
