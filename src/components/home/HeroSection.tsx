@@ -15,7 +15,7 @@ export function HeroSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-end justify-center pointer-events-none overflow-hidden"
       >
-        <div className="relative h-full w-[520px] sm:w-[640px] md:w-[880px] lg:w-[1000px] xl:w-[1100px] max-w-none flex items-end justify-center translate-y-1 sm:translate-y-0 md:translate-y-7 lg:translate-y-8 xl:translate-y-9">
+        <div className="relative h-full w-[520px] sm:w-[640px] md:w-[880px] lg:w-[1000px] xl:w-[1100px] max-w-none flex items-end justify-center translate-y-6 sm:translate-y-4 md:translate-y-7 lg:translate-y-8 xl:translate-y-9">
           <Image
             src="/Rectangle 2.png"
             alt="Ademola Samuel"
@@ -27,8 +27,8 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Bottom fade - desktop only so mobile portrait extends all the way down */}
-      <div className="hidden sm:block absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FFFEFE] to-transparent z-[1] pointer-events-none" />
+      {/* Bottom fade to seamlessly eliminate any bottom shadow/edge before the stats bar */}
+      <div className="absolute inset-x-0 bottom-0 h-8 sm:h-10 bg-gradient-to-t from-[#FFFEFE] to-transparent z-[1] pointer-events-none" />
 
       {/* Foreground Content Container */}
       <div className="relative z-10 mx-auto flex min-h-[460px] sm:min-h-[560px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-between px-4 sm:px-6 md:px-8 pb-2 sm:pb-6 md:pb-8 pt-6 sm:pt-10 md:pt-16 lg:pb-10">
