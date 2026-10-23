@@ -13,9 +13,9 @@ export function Footer() {
   return (
     <footer className="w-full bg-transparent pt-14 pb-10 text-neutral-400">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
-        {/* Main Footer Row: 3 columns to guarantee dead-center alignment */}
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-3">
-          {/* Left Column: Brand Logo & Title */}
+        {/* Main Footer Row: 2 balanced items centered on the page */}
+        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-8 md:flex-row px-4">
+          {/* Left: Brand Logo & Title */}
           <div className="flex flex-col items-center gap-1.5 md:items-start">
             <div className="relative h-10 w-10">
               <Image
@@ -30,8 +30,8 @@ export function Footer() {
             </span>
           </div>
 
-          {/* Center Column: Prominent Email & BIG Centralized Social Icons */}
-          <div className="flex flex-col items-center justify-center gap-5 text-center">
+          {/* Right: Email & Centralized Social Icons */}
+          <div className="flex flex-col items-center gap-4 text-center md:items-end md:text-right">
             <a
               href="mailto:ademolasamuel280@gmail.com"
               className="text-base font-medium text-neutral-200 transition-colors hover:text-white sm:text-lg md:text-xl"
@@ -39,8 +39,8 @@ export function Footer() {
               ademolasamuel280@gmail.com
             </a>
 
-            {/* Bigger, Centralized Social Links */}
-            <div className="flex items-center justify-center gap-6 sm:gap-7">
+            {/* Bigger Social Links */}
+            <div className="flex items-center gap-6 sm:gap-7">
               <a
                 href="https://x.com/sam_d_artist?s=11&t=OypTPkmp9VXkaPhnhYMeNg"
                 target="_blank"
@@ -79,9 +79,6 @@ export function Footer() {
               </a>
             </div>
           </div>
-
-          {/* Right Column: Spacer to maintain 3-column symmetry (fixed back-to-top is available globally) */}
-          <div className="hidden md:block" />
         </div>
 
         {/* Copyright */}
