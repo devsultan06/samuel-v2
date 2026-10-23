@@ -1,5 +1,5 @@
+import { Suspense } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { DecorativeBubbles } from "@/components/ui/DecorativeBubbles";
@@ -31,7 +31,15 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   };
 }
 
-export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+export default function ProjectDetailPage({ params }: ProjectPageProps) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <ProjectDetailsContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ProjectDetailsContent({ params }: ProjectPageProps) {
   const { slug } = await params;
   const projectIndex = projects.findIndex((p) => p.slug === slug);
 

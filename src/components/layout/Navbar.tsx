@@ -46,9 +46,9 @@ export function Navbar({ theme = "light" }: NavbarProps) {
           : "bg-[#111112] py-3.5 sm:py-4 md:py-5"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 md:px-8">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 md:px-8">
         {/* Mobile: Hamburger on left */}
-        <div className="flex items-center md:hidden">
+        <div className="z-10 flex items-center md:hidden">
           <button
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open navigation menu"
@@ -70,10 +70,10 @@ export function Navbar({ theme = "light" }: NavbarProps) {
           </button>
         </div>
 
-        {/* Brand Logo - Uses /logo.png directly */}
-        <div className="flex items-center">
+        {/* Brand Logo - Exactly centralized on phone screens, normal flex on desktop */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center md:static md:left-auto md:top-auto md:translate-x-0 md:translate-y-0">
           <Link href="/" className="group flex items-center">
-            <div className="relative h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition-transform group-hover:scale-105">
+            <div className="relative h-8 w-8 sm:h-9 sm:w-9 md:h-12 md:w-12 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Samuel's Logo"
@@ -113,11 +113,11 @@ export function Navbar({ theme = "light" }: NavbarProps) {
           })}
         </nav>
 
-        {/* Hire Me CTA Button */}
-        <div className="flex items-center">
+        {/* Hire Me CTA Button - Compact on phone screen */}
+        <div className="z-10 flex items-center">
           <Link
             href="/hire-me"
-            className={`rounded-full px-7 py-2.5 text-sm font-medium transition-all duration-200 ${
+            className={`rounded-full px-4 py-1.5 text-xs sm:px-7 sm:py-2.5 sm:text-sm font-medium transition-all duration-200 ${
               isLight
                 ? "border border-[#2D17BB]/30 text-[#2D17BB] hover:bg-[#2D17BB]/5 hover:border-[#2D17BB]"
                 : "border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 hover:border-purple-400"
