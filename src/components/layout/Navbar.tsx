@@ -42,8 +42,8 @@ export function Navbar({ theme = "light" }: NavbarProps) {
         scrolled
           ? "bg-[#111112]/95 backdrop-blur-md border-b border-white/5 py-3 shadow-lg"
           : isLight
-          ? "bg-[#FFFEFE] py-5"
-          : "bg-[#111112] py-5"
+          ? "bg-[#FFFEFE] py-3.5 sm:py-4 md:py-5"
+          : "bg-[#111112] py-3.5 sm:py-4 md:py-5"
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 md:px-8">
@@ -73,7 +73,7 @@ export function Navbar({ theme = "light" }: NavbarProps) {
         {/* Brand Logo - Uses /logo.png directly */}
         <div className="flex items-center">
           <Link href="/" className="group flex items-center">
-            <div className="relative h-12 w-12 sm:h-14 sm:w-14 transition-transform group-hover:scale-105">
+            <div className="relative h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition-transform group-hover:scale-105">
               <Image
                 src="/logo.png"
                 alt="Samuel's Logo"
