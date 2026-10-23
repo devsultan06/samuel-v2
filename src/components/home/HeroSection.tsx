@@ -15,7 +15,7 @@ export function HeroSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute inset-x-0 bottom-0 -top-20 sm:-top-10 md:top-0 z-0 flex items-end justify-center pointer-events-none overflow-hidden"
       >
-        <div className="relative h-full w-[520px] sm:w-[680px] md:w-[880px] lg:w-[1000px] xl:w-[1100px] max-w-none flex items-end justify-center -translate-y-4 sm:-translate-y-4 md:translate-y-7 lg:translate-y-8 xl:translate-y-9">
+        <div className="relative h-full w-[560px] sm:w-[680px] md:w-[880px] lg:w-[1000px] xl:w-[1100px] max-w-none flex items-end justify-center translate-y-0 md:translate-y-7 lg:translate-y-8 xl:translate-y-9">
           <Image
             src="/Rectangle 2.png"
             alt="Ademola Samuel"
@@ -28,10 +28,10 @@ export function HeroSection() {
       </motion.div>
 
       {/* Subtle bottom fade on mobile to ensure seamless blend with stats bar */}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#FFFEFE] to-transparent z-[1] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#FFFEFE] to-transparent z-[1] pointer-events-none" />
 
       {/* Foreground Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-[540px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-between px-4 sm:px-6 md:px-8 pb-4 sm:pb-8 pt-20 sm:pt-24 md:pt-28 lg:pb-10">
+      <div className="relative z-10 mx-auto flex min-h-[480px] sm:min-h-[580px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-between px-4 sm:px-6 md:px-8 pb-3 sm:pb-6 md:pb-8 pt-20 sm:pt-24 md:pt-28 lg:pb-10">
 
         {/* Top-Left: Badge & Headline */}
         <motion.div
@@ -93,7 +93,7 @@ export function HeroSection() {
           className="flex flex-col items-end self-end"
         >
           {/* Short bio for mobile */}
-          <p className="md:hidden max-w-[220px] text-sm leading-snug text-neutral-800 bg-white/80 backdrop-blur-[2px] p-2 rounded-lg text-right">
+          <p className="md:hidden max-w-[240px] text-sm leading-snug text-neutral-800 bg-white/95 backdrop-blur-sm p-3.5 rounded-2xl shadow-sm text-left">
             Hello ! I&apos;m <strong className="font-semibold text-neutral-950">Ademola Samuel</strong>, a passionate UI/UX designer obsessed with breathing life into ideas through{" "}
             <span className="inline-flex items-center gap-0.5 font-semibold text-neutral-950">
               <FigmaIcon className="inline-block h-3 w-3 align-middle" />
@@ -102,7 +102,7 @@ export function HeroSection() {
           </p>
 
           {/* Full bio for desktop */}
-          <p className="hidden md:block max-w-sm text-[15px] leading-relaxed text-neutral-800 text-right">
+          <p className="hidden md:block max-w-sm text-[15px] leading-relaxed text-neutral-800 text-left">
             Hello ! I&apos;m <strong className="font-semibold text-neutral-950">Ademola Samuel</strong>, a passionate UI/UX designer obsessed with breathing life into ideas through{" "}
             <span className="inline-flex items-center gap-1 font-semibold text-neutral-950">
               <FigmaIcon className="inline-block h-3.5 w-3.5 align-middle" />
