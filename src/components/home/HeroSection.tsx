@@ -31,7 +31,7 @@ export function HeroSection() {
       <div className="absolute inset-x-0 bottom-0 h-8 sm:h-10 bg-gradient-to-t from-[#FFFEFE] to-transparent z-[1] pointer-events-none" />
 
       {/* Foreground Content Container */}
-      <div className="relative z-10 mx-auto flex min-h-[460px] sm:min-h-[560px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-between px-4 sm:px-6 md:px-8 pb-2 sm:pb-6 md:pb-8 pt-6 sm:pt-10 md:pt-16 lg:pb-10">
+      <div className="relative z-10 mx-auto flex min-h-[460px] sm:min-h-[560px] md:min-h-[700px] lg:min-h-[750px] xl:min-h-[780px] max-w-6xl flex-col justify-between md:flex-row md:items-end md:justify-between px-4 sm:px-6 md:px-8 pb-2 sm:pb-6 md:pb-8 pt-6 sm:pt-10 md:pt-16 lg:pb-10">
 
         {/* Top-Left: Badge & Headline */}
         <motion.div
@@ -90,7 +90,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col items-end self-end"
+          className="flex flex-col items-end self-end md:self-auto md:items-start"
         >
           {/* Full bio for desktop */}
           <p className="hidden md:block max-w-sm text-[15px] leading-relaxed text-neutral-800 text-left">
