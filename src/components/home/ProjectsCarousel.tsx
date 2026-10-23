@@ -112,7 +112,7 @@ export function ProjectsCarousel() {
         </div>
 
         {/* Carousel Controls Row */}
-        <div className="mt-10 flex items-center justify-between">
+        <div className="mt-10 flex items-center justify-center sm:justify-between">
           {/* Arrow Buttons & Pagination Dots */}
           <div className="flex items-center gap-4">
             {/* Prev Button */}
