@@ -7,14 +7,9 @@ import {
   LinkedInIcon,
   TikTokIcon,
   InstagramIcon,
-  ChevronUpIcon,
 } from "@/components/ui/Icons";
 
 export function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="w-full bg-transparent pt-14 pb-10 text-neutral-400">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
@@ -85,16 +80,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right Column: Scroll to Top */}
-          <div className="flex items-center justify-center md:justify-end">
-            <button
-              onClick={scrollToTop}
-              aria-label="Scroll to top of page"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-700/80 bg-neutral-900/50 text-neutral-300 transition-all hover:border-neutral-500 hover:bg-white/5 hover:text-white"
-            >
-              <ChevronUpIcon className="h-5 w-5" />
-            </button>
-          </div>
+          {/* Right Column: Spacer to maintain 3-column symmetry (fixed back-to-top is available globally) */}
+          <div className="hidden md:block" />
         </div>
 
         {/* Copyright */}
