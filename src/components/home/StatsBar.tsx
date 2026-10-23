@@ -8,7 +8,7 @@ export function StatsBar() {
   ];
 
   return (
-    <section className="w-full bg-[#EDEDF2] py-8 border-y border-neutral-200/80">
+    <section className="w-full bg-[#EDEDF2] py-4 sm:py-8 border-y border-neutral-200/80">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <div className="grid grid-cols-3 gap-4 text-center">
           {stats.map((stat, i) => (
