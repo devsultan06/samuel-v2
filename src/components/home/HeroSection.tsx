@@ -92,15 +92,6 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           className="flex flex-col items-end self-end"
         >
-          {/* Short bio for mobile */}
-          <p className="md:hidden max-w-[240px] text-sm leading-snug text-neutral-800 bg-white/95 backdrop-blur-sm p-3.5 rounded-2xl shadow-sm text-left">
-            Hello ! I&apos;m <strong className="font-semibold text-neutral-950">Ademola Samuel</strong>, a passionate UI/UX designer obsessed with breathing life into ideas through{" "}
-            <span className="inline-flex items-center gap-0.5 font-semibold text-neutral-950">
-              <FigmaIcon className="inline-block h-3 w-3 align-middle" />
-              <span>Figma</span>
-            </span>.
-          </p>
-
           {/* Full bio for desktop */}
           <p className="hidden md:block max-w-sm text-[15px] leading-relaxed text-neutral-800 text-left">
             Hello ! I&apos;m <strong className="font-semibold text-neutral-950">Ademola Samuel</strong>, a passionate UI/UX designer obsessed with breathing life into ideas through{" "}
@@ -113,7 +104,7 @@ export function HeroSection() {
 
           {/* See My Works Button */}
           <motion.div
-            className="mt-3 sm:mt-6"
+            className="sm:mt-6"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
           >
