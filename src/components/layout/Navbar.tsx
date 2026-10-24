@@ -4,7 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { XIcon, LinkedInIcon, TikTokIcon, InstagramIcon } from "@/components/ui/Icons";
+import {
+  XIcon,
+  LinkedInIcon,
+  TikTokIcon,
+  InstagramIcon,
+} from "@/components/ui/Icons";
 
 interface NavbarProps {
   theme?: "light" | "dark";
@@ -42,8 +47,8 @@ export function Navbar({ theme = "light" }: NavbarProps) {
         scrolled
           ? "bg-[#111112]/95 backdrop-blur-md border-b border-white/5 py-3 shadow-lg"
           : isLight
-          ? "bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-sm md:border-transparent md:shadow-none md:bg-[#FFFEFE] py-3.5 sm:py-4 md:py-5"
-          : "bg-[#111112] py-3.5 sm:py-4 md:py-5"
+            ? "bg-[#FFFEFE] py-3.5 sm:py-4 md:py-5"
+            : "bg-[#111112] py-3.5 sm:py-4 md:py-5"
       }`}
     >
       <div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 md:px-8">
@@ -99,8 +104,8 @@ export function Navbar({ theme = "light" }: NavbarProps) {
                       ? "text-neutral-950 font-semibold"
                       : "text-white font-semibold"
                     : isLight
-                    ? "text-neutral-700 hover:text-neutral-950"
-                    : "text-neutral-300 hover:text-white"
+                      ? "text-neutral-700 hover:text-neutral-950"
+                      : "text-neutral-300 hover:text-white"
                 }`}
               >
                 <span>{link.label}</span>
