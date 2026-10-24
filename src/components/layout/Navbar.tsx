@@ -42,7 +42,7 @@ export function Navbar({ theme = "light" }: NavbarProps) {
         scrolled
           ? "bg-[#111112]/95 backdrop-blur-md border-b border-white/5 py-3 shadow-lg"
           : isLight
-          ? "bg-[#FFFEFE] py-3.5 sm:py-4 md:py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-sm md:border-transparent md:shadow-none md:bg-[#FFFEFE] py-3.5 sm:py-4 md:py-5"
           : "bg-[#111112] py-3.5 sm:py-4 md:py-5"
       }`}
     >
