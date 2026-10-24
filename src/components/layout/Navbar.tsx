@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -19,6 +20,11 @@ export function Navbar({ theme = "light" }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +33,18 @@ export function Navbar({ theme = "light" }: NavbarProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll when mobile menu is open to prevent background bleed and scroll issues
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -133,105 +151,108 @@ export function Navbar({ theme = "light" }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-[#111112] text-white">
-          <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-            <div className="relative h-10 w-10">
-              <Image
-                src="/logo.png"
-                alt="Samuel's Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
-              className="rounded-full p-2 text-neutral-400 hover:bg-white/10 hover:text-white"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-
-          <div className="flex flex-1 flex-col justify-center gap-8 px-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
+      {/* Mobile Menu Drawer (Portaled directly to document.body so scroll/header transforms never strip the background) */}
+      {mounted &&
+        mobileMenuOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-[99999] flex flex-col bg-[#111112] text-white min-h-[100dvh] w-screen overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+              <div className="relative h-10 w-10">
+                <Image
+                  src="/logo.png"
+                  alt="Samuel's Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <button
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-2xl font-bold transition-colors ${
-                  isLinkActive(link.href)
-                    ? "text-[#5848C3]"
-                    : "text-neutral-200 hover:text-white"
-                }`}
+                aria-label="Close menu"
+                className="rounded-full p-2 text-neutral-400 hover:bg-white/10 hover:text-white"
               >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="/hire-me"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-4 inline-flex w-fit rounded-full bg-[#2D17BB] px-8 py-3 text-base font-semibold text-white shadow-lg shadow-[#2D17BB]/30"
-            >
-              Hire me
-            </Link>
-          </div>
-
-          <div className="border-t border-white/10 p-8">
-            <p className="text-xs uppercase tracking-wider text-neutral-500">
-              Connect with me
-            </p>
-            <div className="mt-4 flex items-center gap-6">
-              <a
-                href="https://x.com/sam_d_artist?s=11&t=OypTPkmp9VXkaPhnhYMeNg"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="X (Twitter)"
-                className="text-neutral-400 hover:text-white"
-              >
-                <XIcon className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/samuel-ademola-a532272bb?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="text-neutral-400 hover:text-white"
-              >
-                <LinkedInIcon className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@samuels_art7?_r=1&_t=ZS-9Am3iBjjpua"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="TikTok"
-                className="text-neutral-400 hover:text-white"
-              >
-                <TikTokIcon className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.instagram.com/samuels_art7?exln=anpkdmdjYno4Zzl2&utm_source=qr"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-                className="text-neutral-400 hover:text-white"
-              >
-                <InstagramIcon className="h-5 w-5" />
-              </a>
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
             </div>
-          </div>
-        </div>
-      )}
+
+            <div className="flex flex-1 flex-col justify-center gap-8 px-8 py-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-2xl font-bold transition-colors ${
+                    isLinkActive(link.href)
+                      ? "text-[#5848C3]"
+                      : "text-neutral-200 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                href="/hire-me"
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-4 inline-flex w-fit rounded-full bg-[#2D17BB] px-8 py-3 text-base font-semibold text-white shadow-lg shadow-[#2D17BB]/30"
+              >
+                Hire me
+              </Link>
+            </div>
+
+            <div className="border-t border-white/10 p-8">
+              <p className="text-xs uppercase tracking-wider text-neutral-500">
+                Connect with me
+              </p>
+              <div className="mt-4 flex items-center gap-6">
+                <a
+                  href="https://x.com/sam_d_artist?s=11&t=OypTPkmp9VXkaPhnhYMeNg"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="X (Twitter)"
+                  className="text-neutral-400 hover:text-white"
+                >
+                  <XIcon className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/samuel-ademola-a532272bb?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-neutral-400 hover:text-white"
+                >
+                  <LinkedInIcon className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@samuels_art7?_r=1&_t=ZS-9Am3iBjjpua"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="TikTok"
+                  className="text-neutral-400 hover:text-white"
+                >
+                  <TikTokIcon className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/samuels_art7?exln=anpkdmdjYno4Zzl2&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  className="text-neutral-400 hover:text-white"
+                >
+                  <InstagramIcon className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </header>
   );
 }
